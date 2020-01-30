@@ -1,0 +1,71 @@
+// https://stackoverflow.com/questions/55697328/kotlin-how-to-create-a-runnable-jar
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+
+}
+
+group 'org.freebase'
+version '1.0-SNAPSHOT'
+apply plugin: 'application'
+apply plugin: 'kotlin'
+apply plugin: 'java'
+
+
+//plugins {
+//    id 'java'
+//    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+//}
+
+sourceCompatibility = 1.8
+mainClassName = "org.freebase.csv.CallWrapper"
+
+repositories {
+    mavenCentral()
+    jcenter()
+
+}
+
+
+dependencies {
+//    classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+ //   implementation group:'org.xerial', name:'sqlite-jdbc', version:'3.8.11.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'com.needhamsoftware.unojar:core:0.99.1'
+
+}
+apply plugin: 'com.github.johnrengelman.shadow'
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+//unojar {
+//    unoJar "build/testJar2.jar"                        // <<< (1)
+//    manifestAttrs ("Test-Attribute" : "TestValue")     // <<< (2)
+//    appMainClass "com.needhamsoftware.unojar.TestMain" // <<< (3)
+//    appFiles {                                         // <<< (4)
+//        fileset(dir: 'build/classes/java/test') {
+//            include(name: '**/TestMain.class')
+//        }
+//    }
+//    depLibs {                                          // <<< (5)
+//        fileset(dir: 'build/libs') {
+//            include(name: 'libtest.jar')
+//        }
+//    }
+//}
+
